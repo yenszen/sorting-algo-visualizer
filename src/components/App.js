@@ -1,10 +1,13 @@
 import React from "react";
 import "./App.css";
+import Main from "./Main";
 
-export default function App() {
+function App() {
   return (
-    <div>
-      <h2>Sorting algorithm visualizer</h2>
+    <div className="App">
+      <Main />
     </div>
   );
 }
+
+export default App;

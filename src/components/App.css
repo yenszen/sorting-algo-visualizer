@@ -1,3 +1,21 @@
 .App {
   text-align: center;
 }
+
+.menu {
+  margin: 1rem 0;
+}
+
+.main {
+  width: 80vw;
+  margin: 0 auto;
+  /* background: black; */
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.bar {
+  width: 0.75vw;
+  margin: 0 0.125vw;
+  background-color: darkslateblue;
+}
