@@ -1,11 +1,14 @@
 import React from "react";
 
-function Menu({ generateArray, bubbleSort }) {
+function Menu({ generateArray, bubbleSort, insertionSort }) {
   return (
     <div className="menu">
       <h1>Sort Visualizer</h1>
-      <button onClick={generateArray}>New Array</button>
-      <button onClick={bubbleSort}>Bubble Sort</button>
+      <div>
+        <button onClick={generateArray}>Randomize</button>
+        <button onClick={bubbleSort}>Bubble Sort</button>
+        <button onClick={insertionSort}>Insertion Sort</button>
+      </div>
     </div>
   );
 }
