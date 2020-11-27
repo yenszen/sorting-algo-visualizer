@@ -18,7 +18,7 @@
 }
 
 .menu div {
-  width: 50%;
+  width: 75%;
   display: flex;
   justify-content: space-evenly;
 }

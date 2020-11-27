@@ -1,56 +1,74 @@
 export function getMergeSortAnimation(array) {
   const animations = [];
-  const arrayClone = array.slice();
-  doMergeSort(arrayClone, animations);
+  const auxiliaryArray = array.slice();
+  doMergeSort(array, 0, array.length - 1, auxiliaryArray, animations);
   return animations;
 }
 
-function doMergeSort(arr, animations) {
-  const n = arr.length;
-
-  if (n === 1) {
-    return arr;
+function doMergeSort(array, startIndex, endIndex, auxiliaryArray, animations) {
+  // an array of size one is sorted
+  if (startIndex === endIndex) {
+    return;
   }
 
-  const mid = Math.floor(n / 2);
+  const middleIndex = Math.floor((startIndex + endIndex) / 2);
 
-  let left = arr.slice(0, mid);
-  let right = arr.slice(mid, n);
+  // call left half subarray recursively
+  doMergeSort(auxiliaryArray, startIndex, middleIndex, array, animations);
+  // call right half subarray recursively
+  doMergeSort(auxiliaryArray, middleIndex + 1, endIndex, array, animations);
 
-  left = doMergeSort(left, animations);
-  right = doMergeSort(right, animations);
-
-  merge(left, right, arr, animations);
-  return arr;
+  merge(array, startIndex, middleIndex, endIndex, auxiliaryArray, animations);
 }
 
-function merge(left, right, arr, animations) {
-  const nLeft = left.length;
-  const nRight = right.length;
-  let i = 0;
-  let j = 0;
-  let k = 0;
+function merge(
+  array,
+  startIndex,
+  middleIndex,
+  endIndex,
+  auxiliaryArray,
+  animations
+) {
+  let i = startIndex;
+  let j = middleIndex + 1;
+  let k = startIndex;
 
-  while (i < nLeft && j < nRight) {
-    if (left[i] <= right[j]) {
-      arr[k] = left[i];
+  while (i <= middleIndex && j <= endIndex) {
+    // indices for highlighting and de-highlighting
+    animations.push([i, j]);
+    animations.push([i, j]);
+    if (auxiliaryArray[i] <= auxiliaryArray[j]) {
+      // [arrayIndex, newHeight]
+      animations.push([k, auxiliaryArray[i]]);
+      array[k] = auxiliaryArray[i];
       k++;
       i++;
     } else {
-      arr[k] = right[j];
+      animations.push([k, auxiliaryArray[j]]);
+      array[k] = auxiliaryArray[j];
       k++;
       j++;
     }
   }
 
-  while (i < nLeft) {
-    arr[k] = left[i];
+  while (i <= middleIndex) {
+    // indices for highlighting and de-highlighting
+    animations.push([i, i]);
+    animations.push([i, i]);
+    // [arrayIndex, newHeight]
+    animations.push([k, auxiliaryArray[i]]);
+    array[k] = auxiliaryArray[i];
     k++;
     i++;
   }
 
-  while (j < nRight) {
-    arr[k] = right[j];
+  while (j <= endIndex) {
+    // indices for highlighting and de-highlighting
+    animations.push([j, j]);
+    animations.push([j, j]);
+    // [arrayIndex, newHeight]
+    animations.push([k, auxiliaryArray[j]]);
+    array[k] = auxiliaryArray[j];
     k++;
     j++;
   }
