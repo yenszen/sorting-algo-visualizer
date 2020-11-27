@@ -3,6 +3,7 @@ import Menu from "./Menu";
 import { getBubbleSortAnimations } from "../algorithms/BubbleSort";
 import { getInsertionSortAnimation } from "../algorithms/InsertionSort";
 import { getQuickSortAnimation } from "../algorithms/QuickSort";
+import { getMergeSortAnimation } from "../algorithms/MergeSort";
 
 function Main() {
   const [array, setArray] = useState([]);
@@ -161,6 +162,33 @@ function Main() {
     }
   };
 
+  const mergeSort = () => {
+    const animations = getMergeSortAnimation(array);
+    for (let i = 0; i < animations.length; i++) {
+      const bars = document.getElementsByClassName("bar");
+      // every third array element in animations array is an overwriting animation
+      const overwriting = i % 3 === 2;
+      if (overwriting) {
+        const [index, height] = animations[i];
+        setTimeout(() => {
+          bars[index].style.backgroundColor = OVERWRITE_COLOUR;
+          bars[index].style.height = `${height}px`;
+        }, i * ANIMATION_MS);
+        setTimeout(() => {
+          bars[index].style.backgroundColor = MAIN_COLOUR;
+        }, i * ANIMATION_MS + ANIMATION_MS / 2);
+      } else {
+        const [barOneIndex, barTwoIndex] = animations[i];
+        // every first array element in animations array is index for highlighting
+        const color = i % 3 === 0 ? COMPARE_COLOUR : MAIN_COLOUR;
+        setTimeout(() => {
+          bars[barOneIndex].style.backgroundColor = color;
+          bars[barTwoIndex].style.backgroundColor = color;
+        }, i * ANIMATION_MS);
+      }
+    }
+  };
+
   return (
     <React.Fragment>
       <Menu
@@ -168,6 +196,7 @@ function Main() {
         bubbleSort={bubbleSort}
         insertionSort={insertionSort}
         quickSort={quickSort}
+        mergeSort={mergeSort}
       />
       <div className="main">
         {array.map((value, index) => {
