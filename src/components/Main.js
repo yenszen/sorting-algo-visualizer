@@ -4,24 +4,28 @@ import { getBubbleSortAnimations } from "../algorithms/BubbleSort";
 import { getInsertionSortAnimation } from "../algorithms/InsertionSort";
 import { getQuickSortAnimation } from "../algorithms/QuickSort";
 import { getMergeSortAnimation } from "../algorithms/MergeSort";
+import BubbleInfo from "../information/BubbleInfo";
 
 function Main() {
   const [array, setArray] = useState([]);
+  const [speed, setSpeed] = useState(500);
+  const [arrSize, setArrSize] = useState(50);
 
   useEffect(() => {
     generateArray();
+    // eslint-disable-next-line
   }, []);
 
   const generateArray = () => {
     const arr = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < arrSize; i++) {
       arr.push(getRandomArbitrary(10, 400));
     }
     setArray(arr);
   };
 
   // VARIABLES
-  const ANIMATION_MS = 10;
+  const ANIMATION_MS = speed;
   const MAIN_COLOUR = "#303030";
   const SWAP_COLOUR = "turquoise";
   const OVERWRITE_COLOUR = "red";
@@ -197,6 +201,10 @@ function Main() {
         insertionSort={insertionSort}
         quickSort={quickSort}
         mergeSort={mergeSort}
+        speed={speed}
+        setSpeed={setSpeed}
+        arrSize={arrSize}
+        setArrSize={setArrSize}
       />
       <div className="main">
         {array.map((value, index) => {
@@ -209,6 +217,7 @@ function Main() {
           );
         })}
       </div>
+      <BubbleInfo />
     </React.Fragment>
   );
 }

@@ -17,26 +17,10 @@
   font-size: x-large;
 }
 
-.menu div {
-  width: 75%;
+.menu .controls {
+  width: 55%;
   display: flex;
   justify-content: space-evenly;
-}
-
-.menu button {
-  height: 2.5rem;
-  width: 7rem;
-  border-radius: 5px;
-  border: 0;
-}
-
-button:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-button:hover {
-  cursor: pointer;
 }
 
 .main {
