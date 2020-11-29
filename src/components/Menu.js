@@ -17,6 +17,7 @@ function Menu({
   setSpeed,
   arrSize,
   setArrSize,
+  isRunning,
 }) {
   const [speedOpen, setSpeedOpen] = useState(false);
   const [sizeOpen, setSizeOpen] = useState(false);
@@ -31,7 +32,11 @@ function Menu({
     <div className="menu">
       <h1>Sort Visualizer</h1>
       <div className="controls">
-        <ButtonDropdown isOpen={sizeOpen} toggle={sizeToggle}>
+        <ButtonDropdown
+          isOpen={sizeOpen}
+          toggle={sizeToggle}
+          disabled={isRunning ? true : false}
+        >
           <DropdownToggle caret>Size {arrSize}</DropdownToggle>
           <DropdownMenu>
             <DropdownItem onClick={() => setArrSize(10)}>10</DropdownItem>
@@ -42,22 +47,34 @@ function Menu({
           </DropdownMenu>
         </ButtonDropdown>
 
-        <Button color="secondary" onClick={generateArray}>
+        <Button
+          color="secondary"
+          onClick={generateArray}
+          disabled={isRunning ? true : false}
+        >
           Generate new array
         </Button>
 
-        <ButtonDropdown isOpen={speedOpen} toggle={speedToggle}>
+        <ButtonDropdown
+          isOpen={speedOpen}
+          toggle={speedToggle}
+          disabled={isRunning ? true : false}
+        >
           <DropdownToggle caret>Speed {speed}ms</DropdownToggle>
           <DropdownMenu>
-            <DropdownItem onClick={() => setSpeed(500)}>Slow</DropdownItem>
+            <DropdownItem onClick={() => setSpeed(250)}>Slow</DropdownItem>
             <DropdownItem onClick={() => setSpeed(50)}>Normal</DropdownItem>
             <DropdownItem onClick={() => setSpeed(25)}>Fast</DropdownItem>
             <DropdownItem onClick={() => setSpeed(10)}>Super fast</DropdownItem>
-            <DropdownItem onClick={() => setSpeed(1)}>Godspeed</DropdownItem>
+            <DropdownItem onClick={() => setSpeed(5)}>Godspeed</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
 
-        <ButtonDropdown isOpen={sortOpen} toggle={sortToggle}>
+        <ButtonDropdown
+          isOpen={sortOpen}
+          toggle={sortToggle}
+          disabled={isRunning ? true : false}
+        >
           <DropdownToggle caret>{sortMode}</DropdownToggle>
           <DropdownMenu>
             <DropdownItem
