@@ -4,20 +4,16 @@ import { getBubbleSortAnimations } from "../algorithms/BubbleSort";
 import { getInsertionSortAnimation } from "../algorithms/InsertionSort";
 import { getQuickSortAnimation } from "../algorithms/QuickSort";
 import { getMergeSortAnimation } from "../algorithms/MergeSort";
-import BubbleInfo from "../information/BubbleInfo";
-import InsertionInfo from "../information/InsertionInfo";
-import QuickInfo from "../information/QuickInfo";
-import MergeInfo from "../information/MergeInfo";
+import Description from "./Description";
 
 function Main() {
   const [array, setArray] = useState([]);
   const [speed, setSpeed] = useState(50);
-  const [arrSize, setArrSize] = useState(50);
   const [isRunning, setIsRunning] = useState(false);
-  const [algorithm, setAlgorithm] = useState(null);
+  const [algorithm, setAlgorithm] = useState("Bubble Sort");
 
   useEffect(() => {
-    generateArray();
+    generateArray(50);
     // eslint-disable-next-line
   }, []);
 
@@ -30,14 +26,18 @@ function Main() {
     }
   };
 
-  const generateArray = () => {
+  const generateArray = (arrSize) => {
     const arr = [];
     for (let i = 0; i < arrSize; i++) {
       arr.push(getRandomArbitrary(10, 400));
     }
     setArray(arr);
-    resetBarColour(10, "#303030");
   };
+
+  useEffect(() => {
+    resetBarColour(10, "#303030");
+    // eslint-disable-next-line
+  }, [array]);
 
   // VARIABLES
   const ANIMATION_MS = speed;
@@ -47,7 +47,6 @@ function Main() {
   const COMPARE_COLOUR = "gold";
 
   const bubbleSort = () => {
-    setAlgorithm("Bubble Sort");
     setIsRunning(true);
     resetBarColour(10, "#303030");
     const animations = getBubbleSortAnimations(array);
@@ -91,7 +90,6 @@ function Main() {
   };
 
   const insertionSort = () => {
-    setAlgorithm("Insertion Sort");
     setIsRunning(true);
     resetBarColour(10, "#303030");
     const animations = getInsertionSortAnimation(array);
@@ -136,7 +134,6 @@ function Main() {
   };
 
   const quickSort = () => {
-    setAlgorithm("Quick Sort");
     setIsRunning(true);
     resetBarColour(10, "#303030");
     const animations = getQuickSortAnimation(array);
@@ -203,8 +200,7 @@ function Main() {
   };
 
   const mergeSort = () => {
-    setAlgorithm("Merge Sort");
-    setIsRunning(true);
+    // setIsRunning(true);
     resetBarColour(10, "#303030");
     const animations = getMergeSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
@@ -246,9 +242,9 @@ function Main() {
         mergeSort={mergeSort}
         speed={speed}
         setSpeed={setSpeed}
-        arrSize={arrSize}
-        setArrSize={setArrSize}
         isRunning={isRunning}
+        algorithm={algorithm}
+        setAlgorithm={setAlgorithm}
       />
       <div className="main">
         {array.map((value, index) => {
@@ -261,19 +257,7 @@ function Main() {
           );
         })}
       </div>
-      {algorithm === "Bubble Sort" ? (
-        <BubbleInfo />
-      ) : algorithm === "Insertion Sort" ? (
-        <InsertionInfo />
-      ) : algorithm === "Quick Sort" ? (
-        <QuickInfo />
-      ) : algorithm === "Merge Sort" ? (
-        <MergeInfo />
-      ) : (
-        <div className="info-card">
-          <p>Please select a sorting algorithm</p>
-        </div>
-      )}
+      <Description algorithm={algorithm} />
     </React.Fragment>
   );
 }

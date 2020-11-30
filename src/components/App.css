@@ -22,13 +22,15 @@ h2 {
 }
 
 .menu .controls {
-  width: 55%;
+  width: 70%;
   display: flex;
   justify-content: space-evenly;
 }
 
 .main {
   width: 90vw;
+  /* height is 410px because largest random value is set to 400px */
+  height: 410px;
   margin: 0 auto;
   display: flex;
   flex-flow: row nowrap;
@@ -42,7 +44,7 @@ h2 {
 
 .info-card {
   width: 80vw;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 1rem;
   background-color: antiquewhite;
   display: flex;
@@ -63,4 +65,20 @@ h2 {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+}
+
+.legend {
+  width: 50%;
+  height: 2rem;
+  padding: 0 1rem;
+  margin: 1rem auto;
+  background: antiquewhite;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.legend .block {
+  width: 1rem;
+  height: 1rem;
 }
