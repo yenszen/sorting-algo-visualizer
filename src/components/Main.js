@@ -5,12 +5,16 @@ import { getInsertionSortAnimation } from "../algorithms/InsertionSort";
 import { getQuickSortAnimation } from "../algorithms/QuickSort";
 import { getMergeSortAnimation } from "../algorithms/MergeSort";
 import BubbleInfo from "../information/BubbleInfo";
+import InsertionInfo from "../information/InsertionInfo";
+import QuickInfo from "../information/QuickInfo";
+import MergeInfo from "../information/MergeInfo";
 
 function Main() {
   const [array, setArray] = useState([]);
   const [speed, setSpeed] = useState(50);
   const [arrSize, setArrSize] = useState(50);
   const [isRunning, setIsRunning] = useState(false);
+  const [algorithm, setAlgorithm] = useState(null);
 
   useEffect(() => {
     generateArray();
@@ -43,7 +47,9 @@ function Main() {
   const COMPARE_COLOUR = "gold";
 
   const bubbleSort = () => {
+    setAlgorithm("Bubble Sort");
     setIsRunning(true);
+    resetBarColour(10, "#303030");
     const animations = getBubbleSortAnimations(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -85,7 +91,9 @@ function Main() {
   };
 
   const insertionSort = () => {
+    setAlgorithm("Insertion Sort");
     setIsRunning(true);
+    resetBarColour(10, "#303030");
     const animations = getInsertionSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -128,7 +136,9 @@ function Main() {
   };
 
   const quickSort = () => {
+    setAlgorithm("Quick Sort");
     setIsRunning(true);
+    resetBarColour(10, "#303030");
     const animations = getQuickSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -193,7 +203,9 @@ function Main() {
   };
 
   const mergeSort = () => {
+    setAlgorithm("Merge Sort");
     setIsRunning(true);
+    resetBarColour(10, "#303030");
     const animations = getMergeSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -249,7 +261,19 @@ function Main() {
           );
         })}
       </div>
-      <BubbleInfo />
+      {algorithm === "Bubble Sort" ? (
+        <BubbleInfo />
+      ) : algorithm === "Insertion Sort" ? (
+        <InsertionInfo />
+      ) : algorithm === "Quick Sort" ? (
+        <QuickInfo />
+      ) : algorithm === "Merge Sort" ? (
+        <MergeInfo />
+      ) : (
+        <div className="info-card">
+          <p>Please select a sorting algorithm</p>
+        </div>
+      )}
     </React.Fragment>
   );
 }
