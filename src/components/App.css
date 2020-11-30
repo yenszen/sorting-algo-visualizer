@@ -13,8 +13,12 @@
   align-items: center;
 }
 
-.menu h1 {
+h1 {
   font-size: x-large;
+}
+
+h2 {
+  font-size: larger;
 }
 
 .menu .controls {
@@ -34,4 +38,29 @@
   width: 1.5vw;
   margin: 0 0.25vw;
   background-color: #303030;
+}
+
+.info-card {
+  width: 80vw;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  align-items: flex-start;
+  line-height: 2rem;
+  text-align: justify;
+  text-justify: auto;
+}
+
+.info-card .summary,
+.info-card .performance {
+  width: 40%;
+}
+
+.info-card .performance ul {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
