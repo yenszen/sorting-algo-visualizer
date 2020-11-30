@@ -4,30 +4,51 @@ import { getBubbleSortAnimations } from "../algorithms/BubbleSort";
 import { getInsertionSortAnimation } from "../algorithms/InsertionSort";
 import { getQuickSortAnimation } from "../algorithms/QuickSort";
 import { getMergeSortAnimation } from "../algorithms/MergeSort";
+import Description from "./Description";
 
 function Main() {
   const [array, setArray] = useState([]);
+  const [speed, setSpeed] = useState(50);
+  const [isRunning, setIsRunning] = useState(false);
+  const [algorithm, setAlgorithm] = useState("Bubble Sort");
 
   useEffect(() => {
-    generateArray();
+    generateArray(50);
+    // eslint-disable-next-line
   }, []);
 
-  const generateArray = () => {
+  const resetBarColour = (delayMs, colour) => {
+    for (let i = 0; i < array.length; i++) {
+      const bars = document.getElementsByClassName("bar");
+      setTimeout(() => {
+        bars[i].style.backgroundColor = colour;
+      }, delayMs);
+    }
+  };
+
+  const generateArray = (arrSize) => {
     const arr = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < arrSize; i++) {
       arr.push(getRandomArbitrary(10, 400));
     }
     setArray(arr);
   };
 
+  useEffect(() => {
+    resetBarColour(10, "#303030");
+    // eslint-disable-next-line
+  }, [array]);
+
   // VARIABLES
-  const ANIMATION_MS = 10;
+  const ANIMATION_MS = speed;
   const MAIN_COLOUR = "#303030";
   const SWAP_COLOUR = "turquoise";
   const OVERWRITE_COLOUR = "red";
   const COMPARE_COLOUR = "gold";
 
   const bubbleSort = () => {
+    setIsRunning(true);
+    resetBarColour(10, "#303030");
     const animations = getBubbleSortAnimations(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -62,9 +83,15 @@ function Main() {
         }, i * ANIMATION_MS);
       }
     }
+    resetBarColour(animations.length * ANIMATION_MS, "purple");
+    setTimeout(() => {
+      setIsRunning(false);
+    }, animations.length * ANIMATION_MS);
   };
 
   const insertionSort = () => {
+    setIsRunning(true);
+    resetBarColour(10, "#303030");
     const animations = getInsertionSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -100,9 +127,15 @@ function Main() {
         }, i * ANIMATION_MS);
       }
     }
+    resetBarColour(animations.length * ANIMATION_MS, "purple");
+    setTimeout(() => {
+      setIsRunning(false);
+    }, animations.length * ANIMATION_MS);
   };
 
   const quickSort = () => {
+    setIsRunning(true);
+    resetBarColour(10, "#303030");
     const animations = getQuickSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -160,9 +193,15 @@ function Main() {
         }, i * ANIMATION_MS + ANIMATION_MS / 1.5);
       }
     }
+    resetBarColour(animations.length * ANIMATION_MS, "purple");
+    setTimeout(() => {
+      setIsRunning(false);
+    }, animations.length * ANIMATION_MS);
   };
 
   const mergeSort = () => {
+    // setIsRunning(true);
+    resetBarColour(10, "#303030");
     const animations = getMergeSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -187,6 +226,10 @@ function Main() {
         }, i * ANIMATION_MS);
       }
     }
+    resetBarColour(animations.length * ANIMATION_MS, "purple");
+    setTimeout(() => {
+      setIsRunning(false);
+    }, animations.length * ANIMATION_MS);
   };
 
   return (
@@ -197,6 +240,11 @@ function Main() {
         insertionSort={insertionSort}
         quickSort={quickSort}
         mergeSort={mergeSort}
+        speed={speed}
+        setSpeed={setSpeed}
+        isRunning={isRunning}
+        algorithm={algorithm}
+        setAlgorithm={setAlgorithm}
       />
       <div className="main">
         {array.map((value, index) => {
@@ -209,6 +257,7 @@ function Main() {
           );
         })}
       </div>
+      <Description algorithm={algorithm} />
     </React.Fragment>
   );
 }

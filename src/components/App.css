@@ -4,7 +4,7 @@
 
 .menu {
   margin-bottom: 1rem;
-  padding: 1.5rem 1rem;
+  padding: 1rem 1rem;
   background-color: darkslategrey;
   color: white;
   display: flex;
@@ -13,34 +13,24 @@
   align-items: center;
 }
 
-.menu h1 {
+h1 {
   font-size: x-large;
 }
 
-.menu div {
-  width: 75%;
+h2 {
+  font-size: larger;
+}
+
+.menu .controls {
+  width: 70%;
   display: flex;
   justify-content: space-evenly;
 }
 
-.menu button {
-  height: 2.5rem;
-  width: 7rem;
-  border-radius: 5px;
-  border: 0;
-}
-
-button:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-button:hover {
-  cursor: pointer;
-}
-
 .main {
   width: 90vw;
+  /* height is 410px because largest random value is set to 400px */
+  height: 410px;
   margin: 0 auto;
   display: flex;
   flex-flow: row nowrap;
@@ -50,4 +40,65 @@ button:hover {
   width: 1.5vw;
   margin: 0 0.25vw;
   background-color: #303030;
+}
+
+.info-card {
+  width: 80vw;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: #aec6cf;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 2rem;
+  text-align: justify;
+  text-justify: auto;
+}
+
+.info-card .summary {
+  width: 60%;
+}
+
+.info-card .performance {
+  width: 35%;
+}
+
+.info-card .performance ul {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.legend {
+  width: 50%;
+  height: 2rem;
+  padding: 0 1rem;
+  margin: 1rem auto;
+  background: #aec6cf;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.legend .block {
+  width: 1rem;
+  height: 1rem;
+}
+
+.footer {
+  margin-top: 1rem;
+  padding: 1rem 1rem;
+  background-color: darkslategrey;
+  color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  color: white;
+  text-decoration: underline;
 }
