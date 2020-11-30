@@ -46,19 +46,22 @@ h2 {
   width: 80vw;
   margin: 1rem auto;
   padding: 1rem;
-  background-color: antiquewhite;
+  background-color: #aec6cf;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
   align-items: flex-start;
   line-height: 2rem;
   text-align: justify;
   text-justify: auto;
 }
 
-.info-card .summary,
+.info-card .summary {
+  width: 60%;
+}
+
 .info-card .performance {
-  width: 40%;
+  width: 35%;
 }
 
 .info-card .performance ul {
@@ -72,7 +75,8 @@ h2 {
   height: 2rem;
   padding: 0 1rem;
   margin: 1rem auto;
-  background: antiquewhite;
+  background: #aec6cf;
+  border-radius: 5px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -81,4 +85,20 @@ h2 {
 .legend .block {
   width: 1rem;
   height: 1rem;
+}
+
+.footer {
+  margin-top: 1rem;
+  padding: 1rem 1rem;
+  background-color: darkslategrey;
+  color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  color: white;
+  text-decoration: underline;
 }
