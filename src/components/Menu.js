@@ -111,6 +111,10 @@ function Menu({
             </DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
+
+        <Button color="danger" onClick={() => window.location.reload()}>
+          Cancel animation
+        </Button>
       </div>
     </div>
   );
