@@ -46,7 +46,7 @@ function Menu({
         <ButtonDropdown
           isOpen={sizeOpen}
           toggle={sizeToggle}
-          disabled={isRunning ? true : false}
+          disabled={isRunning}
         >
           <DropdownToggle caret>Generate array</DropdownToggle>
           <DropdownMenu>
@@ -71,7 +71,7 @@ function Menu({
         <ButtonDropdown
           isOpen={speedOpen}
           toggle={speedToggle}
-          disabled={isRunning ? true : false}
+          disabled={isRunning}
         >
           <DropdownToggle caret>Speed {speed}ms</DropdownToggle>
           <DropdownMenu>
@@ -86,7 +86,7 @@ function Menu({
         <ButtonDropdown
           isOpen={sortOpen}
           toggle={sortToggle}
-          disabled={isRunning ? true : false}
+          disabled={isRunning}
         >
           <DropdownToggle caret>{algorithm}</DropdownToggle>
           <DropdownMenu>
@@ -105,11 +105,7 @@ function Menu({
           </DropdownMenu>
         </ButtonDropdown>
 
-        <Button
-          color="success"
-          onClick={sortMode}
-          disabled={isRunning ? true : false}
-        >
+        <Button color="success" onClick={sortMode} disabled={isRunning}>
           Start animation
         </Button>
 
