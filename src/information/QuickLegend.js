@@ -3,7 +3,7 @@ import React from "react";
 function QuickLegend() {
   return (
     <div className="legend">
-      <div className="block" style={{ backgroundColor: "purple" }}></div>
+      <div className="block" style={{ backgroundColor: "green" }}></div>
       <div style={{ margin: "0 1rem" }}>Sorted</div>
       <div className="block" style={{ backgroundColor: "gold" }}></div>
       <div style={{ margin: "0 1rem" }}>Pivot</div>
