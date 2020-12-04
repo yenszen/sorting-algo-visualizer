@@ -14,7 +14,7 @@ function Footer() {
         rel="noreferrer"
         target="_blank"
       >
-        <h2>GitHub</h2>
+        <h2>Project Code</h2>
       </a>
     </div>
   );
