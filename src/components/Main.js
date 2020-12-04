@@ -34,10 +34,22 @@ function Main() {
     setArray(arr);
   };
 
+  // resets bar colour when generating new array
   useEffect(() => {
-    resetBarColour(10, "#303030");
+    resetBarColour(0, "#303030");
     // eslint-disable-next-line
   }, [array]);
+
+  // resets bar colour and array order when switching algorithms to compare performance across same array
+  useEffect(() => {
+    resetBarColour(0, "#303030");
+    for (let i = 0; i < array.length; i++) {
+      const bars = document.getElementsByClassName("bar");
+      bars[i].style.backgroundColor = "#303030";
+      bars[i].style.height = `${array[i]}px`;
+    }
+    // eslint-disable-next-line
+  }, [algorithm]);
 
   // VARIABLES
   const ANIMATION_MS = speed;
@@ -48,7 +60,6 @@ function Main() {
 
   const bubbleSort = () => {
     setIsRunning(true);
-    resetBarColour(10, "#303030");
     const animations = getBubbleSortAnimations(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -83,7 +94,7 @@ function Main() {
         }, i * ANIMATION_MS);
       }
     }
-    resetBarColour(animations.length * ANIMATION_MS, "purple");
+    resetBarColour(animations.length * ANIMATION_MS, "green");
     setTimeout(() => {
       setIsRunning(false);
     }, animations.length * ANIMATION_MS);
@@ -91,7 +102,6 @@ function Main() {
 
   const insertionSort = () => {
     setIsRunning(true);
-    resetBarColour(10, "#303030");
     const animations = getInsertionSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -127,7 +137,7 @@ function Main() {
         }, i * ANIMATION_MS);
       }
     }
-    resetBarColour(animations.length * ANIMATION_MS, "purple");
+    resetBarColour(animations.length * ANIMATION_MS, "green");
     setTimeout(() => {
       setIsRunning(false);
     }, animations.length * ANIMATION_MS);
@@ -135,7 +145,6 @@ function Main() {
 
   const quickSort = () => {
     setIsRunning(true);
-    resetBarColour(10, "#303030");
     const animations = getQuickSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -193,7 +202,7 @@ function Main() {
         }, i * ANIMATION_MS + ANIMATION_MS / 1.5);
       }
     }
-    resetBarColour(animations.length * ANIMATION_MS, "purple");
+    resetBarColour(animations.length * ANIMATION_MS, "green");
     setTimeout(() => {
       setIsRunning(false);
     }, animations.length * ANIMATION_MS);
@@ -201,7 +210,6 @@ function Main() {
 
   const mergeSort = () => {
     // setIsRunning(true);
-    resetBarColour(10, "#303030");
     const animations = getMergeSortAnimation(array);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName("bar");
@@ -226,10 +234,10 @@ function Main() {
         }, i * ANIMATION_MS);
       }
     }
-    resetBarColour(animations.length * ANIMATION_MS, "purple");
-    setTimeout(() => {
-      setIsRunning(false);
-    }, animations.length * ANIMATION_MS);
+    resetBarColour(animations.length * ANIMATION_MS, "green");
+    // setTimeout(() => {
+    //   setIsRunning(false);
+    // }, animations.length * ANIMATION_MS);
   };
 
   return (
