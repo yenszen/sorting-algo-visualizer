@@ -1,3 +1,7 @@
+# Sort Visualizer
+
+This is an app that visualizes different sorting algorithms in order for users to better understand how each of the algorithms work and compare in terms of performance.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
